@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		716294041CE6332A009026E7 /* libgtk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294031CE6332A009026E7 /* libgtk-3.a */; };
+		716294051CE63338009026E7 /* libgdk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716293FE1CE63249009026E7 /* libgdk-3.a */; };
+		716294071CE63342009026E7 /* libpangocairo-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294061CE63342009026E7 /* libpangocairo-1.0.a */; };
+		716294091CE63355009026E7 /* libpango-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294081CE63355009026E7 /* libpango-1.0.a */; };
+		7162940B1CE63361009026E7 /* libatk-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162940A1CE63361009026E7 /* libatk-1.0.a */; };
+		7162940D1CE63370009026E7 /* libcairo-gobject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162940C1CE63370009026E7 /* libcairo-gobject.a */; };
+		7162940F1CE6337C009026E7 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7162940E1CE6337C009026E7 /* libgdk_pixbuf-2.0.0.dylib */; };
+		716294111CE6338E009026E7 /* libgio-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294101CE6338E009026E7 /* libgio-2.0.a */; };
+		716294131CE6339A009026E7 /* libgobject-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294121CE6339A009026E7 /* libgobject-2.0.a */; };
+		716294151CE633A3009026E7 /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294141CE633A3009026E7 /* libglib-2.0.a */; };
+		716294171CE633AB009026E7 /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294161CE633AB009026E7 /* libintl.a */; };
 		7183F0711CE5C7BA003B026B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7183F0701CE5C7BA003B026B /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +34,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		716293FD1CE63249009026E7 /* libgdk-3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgdk-3.0.dylib"; path = "/opt/local/lib/libgdk-3.0.dylib"; sourceTree = "<absolute>"; };
+		716293FE1CE63249009026E7 /* libgdk-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgdk-3.a"; path = "/opt/local/lib/libgdk-3.a"; sourceTree = "<absolute>"; };
+		716294011CE63275009026E7 /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = /opt/local/lib/libcairo.a; sourceTree = "<absolute>"; };
+		716294031CE6332A009026E7 /* libgtk-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgtk-3.a"; path = "/opt/local/lib/libgtk-3.a"; sourceTree = "<absolute>"; };
+		716294061CE63342009026E7 /* libpangocairo-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpangocairo-1.0.a"; path = "/opt/local/lib/libpangocairo-1.0.a"; sourceTree = "<absolute>"; };
+		716294081CE63355009026E7 /* libpango-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libpango-1.0.a"; path = "/opt/local/lib/libpango-1.0.a"; sourceTree = "<absolute>"; };
+		7162940A1CE63361009026E7 /* libatk-1.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libatk-1.0.a"; path = "/opt/local/lib/libatk-1.0.a"; sourceTree = "<absolute>"; };
+		7162940C1CE63370009026E7 /* libcairo-gobject.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libcairo-gobject.a"; path = "/opt/local/lib/libcairo-gobject.a"; sourceTree = "<absolute>"; };
+		7162940E1CE6337C009026E7 /* libgdk_pixbuf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgdk_pixbuf-2.0.0.dylib"; path = "/opt/local/lib/libgdk_pixbuf-2.0.0.dylib"; sourceTree = "<absolute>"; };
+		716294101CE6338E009026E7 /* libgio-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgio-2.0.a"; path = "/opt/local/lib/libgio-2.0.a"; sourceTree = "<absolute>"; };
+		716294121CE6339A009026E7 /* libgobject-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgobject-2.0.a"; path = "/opt/local/lib/libgobject-2.0.a"; sourceTree = "<absolute>"; };
+		716294141CE633A3009026E7 /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "/opt/local/lib/libglib-2.0.a"; sourceTree = "<absolute>"; };
+		716294161CE633AB009026E7 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = /opt/local/lib/libintl.a; sourceTree = "<absolute>"; };
 		7183F06D1CE5C7BA003B026B /* CompressioneDCT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompressioneDCT; sourceTree = BUILT_PRODUCTS_DIR; };
 		7183F0701CE5C7BA003B026B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,15 +56,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				716294041CE6332A009026E7 /* libgtk-3.a in Frameworks */,
+				716294051CE63338009026E7 /* libgdk-3.a in Frameworks */,
+				716294071CE63342009026E7 /* libpangocairo-1.0.a in Frameworks */,
+				716294091CE63355009026E7 /* libpango-1.0.a in Frameworks */,
+				7162940B1CE63361009026E7 /* libatk-1.0.a in Frameworks */,
+				7162940D1CE63370009026E7 /* libcairo-gobject.a in Frameworks */,
+				7162940F1CE6337C009026E7 /* libgdk_pixbuf-2.0.0.dylib in Frameworks */,
+				716294111CE6338E009026E7 /* libgio-2.0.a in Frameworks */,
+				716294131CE6339A009026E7 /* libgobject-2.0.a in Frameworks */,
+				716294151CE633A3009026E7 /* libglib-2.0.a in Frameworks */,
+				716294171CE633AB009026E7 /* libintl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		716294181CE633D0009026E7 /* GTK-3.0 */ = {
+			isa = PBXGroup;
+			children = (
+				716294161CE633AB009026E7 /* libintl.a */,
+				716294141CE633A3009026E7 /* libglib-2.0.a */,
+				716294121CE6339A009026E7 /* libgobject-2.0.a */,
+				716294101CE6338E009026E7 /* libgio-2.0.a */,
+				7162940E1CE6337C009026E7 /* libgdk_pixbuf-2.0.0.dylib */,
+				7162940C1CE63370009026E7 /* libcairo-gobject.a */,
+				7162940A1CE63361009026E7 /* libatk-1.0.a */,
+				716294081CE63355009026E7 /* libpango-1.0.a */,
+				716294061CE63342009026E7 /* libpangocairo-1.0.a */,
+				716294031CE6332A009026E7 /* libgtk-3.a */,
+				716294011CE63275009026E7 /* libcairo.a */,
+				716293FD1CE63249009026E7 /* libgdk-3.0.dylib */,
+				716293FE1CE63249009026E7 /* libgdk-3.a */,
+			);
+			name = "GTK-3.0";
+			sourceTree = "<group>";
+		};
 		7183F0641CE5C7BA003B026B = {
 			isa = PBXGroup;
 			children = (
+				716294181CE633D0009026E7 /* GTK-3.0 */,
 				7183F06F1CE5C7BA003B026B /* CompressioneDCT */,
 				7183F06E1CE5C7BA003B026B /* Products */,
 			);
@@ -164,6 +220,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRELINK_LIBS = "";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -200,6 +259,9 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = "";
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRELINK_LIBS = "";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -207,6 +269,41 @@
 		7183F0751CE5C7BA003B026B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-D_REENTRANT",
+					"-I/opt/local/include/gtk-3.0",
+					"-I/opt/local/include/at-spi2-atk/2.0",
+					"-I/opt/local/include/at-spi-2.0",
+					"-I/opt/local/include/dbus-1.0",
+					"-I/opt/local/lib/dbus-1.0/include",
+					"-I/opt/local/include/gtk-3.0",
+					"-I/opt/local/include/gio-unix-2.0/",
+					"-I/opt/local/include",
+					"-I/opt/local/include/cairo",
+					"-I/opt/local/include",
+					"-I/opt/local/include/pango-1.0",
+					"-I/opt/local/include/harfbuzz",
+					"-I/opt/local/include",
+					"-I/opt/local/include/pango-1.0",
+					"-I/opt/local/include/atk-1.0",
+					"-I/opt/local/include/cairo",
+					"-I/opt/local/include/pixman-1",
+					"-I/opt/local/include",
+					"-I/opt/local/include/freetype2",
+					"-I/opt/local/include",
+					"-I/opt/local/include/freetype2",
+					"-I/opt/local/include/libpng16",
+					"-I/opt/local/include",
+					"-I/opt/local/include/gdk-pixbuf-2.0",
+					"-I/opt/local/include/libpng16",
+					"-I/opt/local/include/glib-2.0",
+					"-I/opt/local/lib/glib-2.0/include",
+					"-I/opt/local/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -214,6 +311,41 @@
 		7183F0761CE5C7BA003B026B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/opt/local/lib,
+				);
+				OTHER_CFLAGS = (
+					"-D_REENTRANT",
+					"-I/opt/local/include/gtk-3.0",
+					"-I/opt/local/include/at-spi2-atk/2.0",
+					"-I/opt/local/include/at-spi-2.0",
+					"-I/opt/local/include/dbus-1.0",
+					"-I/opt/local/lib/dbus-1.0/include",
+					"-I/opt/local/include/gtk-3.0",
+					"-I/opt/local/include/gio-unix-2.0/",
+					"-I/opt/local/include",
+					"-I/opt/local/include/cairo",
+					"-I/opt/local/include",
+					"-I/opt/local/include/pango-1.0",
+					"-I/opt/local/include/harfbuzz",
+					"-I/opt/local/include",
+					"-I/opt/local/include/pango-1.0",
+					"-I/opt/local/include/atk-1.0",
+					"-I/opt/local/include/cairo",
+					"-I/opt/local/include/pixman-1",
+					"-I/opt/local/include",
+					"-I/opt/local/include/freetype2",
+					"-I/opt/local/include",
+					"-I/opt/local/include/freetype2",
+					"-I/opt/local/include/libpng16",
+					"-I/opt/local/include",
+					"-I/opt/local/include/gdk-pixbuf-2.0",
+					"-I/opt/local/include/libpng16",
+					"-I/opt/local/include/glib-2.0",
+					"-I/opt/local/lib/glib-2.0/include",
+					"-I/opt/local/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -237,6 +369,7 @@
 				7183F0761CE5C7BA003B026B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

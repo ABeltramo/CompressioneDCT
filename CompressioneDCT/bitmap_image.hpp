@@ -1520,6 +1520,7 @@ private:
          return v;
    }
 
+protected:
    std::string  file_name_;
    unsigned int width_;
    unsigned int height_;

@@ -1,35 +1,47 @@
-#include <cstdio>
-#include "bitmap_image.hpp"
+#include <iostream>
+using namespace std;
+
+#include "bitmap_plus.hpp"
+
+int N = 2;
+int blockSize = N*8;
+int quality = 80;
+string sourceImage = "img/cathedral.bmp";
+
+void scaleImage(bitmap_plus & img){
+	const unsigned int height = img.height();
+	const unsigned int width  = img.width();
+	
+	if(height % blockSize != 0){ // Completamento righe
+		cout << "Altezza: " << height << " aggiungo " << height % blockSize << "px righe" << endl;
+	}
+	if(width % blockSize != 0){ // Completamento colonne
+		cout << "Larghezza: " << width << " aggiungo " << width % blockSize << "px colonne" << endl;
+		img.set_width(width + width % blockSize);
+		/*for(int i=1;i<=width % blockSize;i++){
+			for(int j=0;i<height;i++){
+				img.set_pixel(j, width+i ,0,0,0);
+			}
+		}*/
+	}
+	else
+		cout << "L'immagine è già un multiplo di " << blockSize << endl;
+}
+
 
 int main()
 {
-	bitmap_image image("img/cathedral.bmp");
+	bitmap_plus image(sourceImage);
 	
 	if (!image)
 	{
-		printf("Error - Failed to open: input.bmp\n");
+		cout << "Error - Failed to open: input.bmp\n";
 		return 1;
 	}
 	
-	unsigned char red;
-	unsigned char green;
-	unsigned char blue;
+	scaleImage(image);
 	
-	unsigned int total_number_of_pixels = 0;
+	image.save_image("result.bmp");
 	
-	const unsigned int height = image.height();
-	const unsigned int width  = image.width();
-	
-	for (std::size_t y = 0; y < height; ++y)
-	{
-		for (std::size_t x = 0; x < width; ++x)
-		{
-			image.get_pixel(x,y,red,green,blue);
-			if (red >= 111)
-				total_number_of_pixels++;
-		}
-	}
-	
-	printf("Number of pixels with red >= 111: %d\n",total_number_of_pixels);
 	return 0;
 }

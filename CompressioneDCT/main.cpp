@@ -1,22 +1,35 @@
-#include <gtk/gtk.h>
+#include <cstdio>
+#include "bitmap_image.hpp"
 
-static void activate (GtkApplication* app, gpointer user_data){
-	GtkWidget *window;
+int main()
+{
+	bitmap_image image("img/cathedral.bmp");
 	
-	window = gtk_application_window_new (app);
-	gtk_window_set_title (GTK_WINDOW (window), "Window");
-	gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
-	gtk_widget_show_all (window);
-}
-
-int main (int    argc, char **argv){
-	GtkApplication *app;
-	int status;
+	if (!image)
+	{
+		printf("Error - Failed to open: input.bmp\n");
+		return 1;
+	}
 	
-	app = gtk_application_new ("org.gtk.example", G_APPLICATION_FLAGS_NONE);
-	g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
-	status = g_application_run (G_APPLICATION (app), argc, argv);
-	g_object_unref (app);
+	unsigned char red;
+	unsigned char green;
+	unsigned char blue;
 	
-	return status;
+	unsigned int total_number_of_pixels = 0;
+	
+	const unsigned int height = image.height();
+	const unsigned int width  = image.width();
+	
+	for (std::size_t y = 0; y < height; ++y)
+	{
+		for (std::size_t x = 0; x < width; ++x)
+		{
+			image.get_pixel(x,y,red,green,blue);
+			if (red >= 111)
+				total_number_of_pixels++;
+		}
+	}
+	
+	printf("Number of pixels with red >= 111: %d\n",total_number_of_pixels);
+	return 0;
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		711C14CC1CEB5ED60042BB66 /* flower_foveon.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 711C14CA1CEB5EAD0042BB66 /* flower_foveon.bmp */; };
+		711C14CE1CEB5FD30042BB66 /* cathedral.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 711C14CD1CEB5FB40042BB66 /* cathedral.bmp */; };
 		716294041CE6332A009026E7 /* libgtk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294031CE6332A009026E7 /* libgtk-3.a */; };
 		716294051CE63338009026E7 /* libgdk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716293FE1CE63249009026E7 /* libgdk-3.a */; };
 		716294071CE63342009026E7 /* libpangocairo-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294061CE63342009026E7 /* libpangocairo-1.0.a */; };
@@ -24,16 +26,21 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		7183F06B1CE5C7BA003B026B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = img;
+			dstSubfolderSpec = 6;
 			files = (
+				711C14CE1CEB5FD30042BB66 /* cathedral.bmp in CopyFiles */,
+				711C14CC1CEB5ED60042BB66 /* flower_foveon.bmp in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		711C14C71CEB5E390042BB66 /* bitmap_image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_image.hpp; sourceTree = "<group>"; };
+		711C14CA1CEB5EAD0042BB66 /* flower_foveon.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; name = flower_foveon.bmp; path = CompressioneDCT/flower_foveon.bmp; sourceTree = "<group>"; };
+		711C14CD1CEB5FB40042BB66 /* cathedral.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = cathedral.bmp; sourceTree = "<group>"; };
 		716293FD1CE63249009026E7 /* libgdk-3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgdk-3.0.dylib"; path = "/opt/local/lib/libgdk-3.0.dylib"; sourceTree = "<absolute>"; };
 		716293FE1CE63249009026E7 /* libgdk-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgdk-3.a"; path = "/opt/local/lib/libgdk-3.a"; sourceTree = "<absolute>"; };
 		716294011CE63275009026E7 /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = /opt/local/lib/libcairo.a; sourceTree = "<absolute>"; };
@@ -73,6 +80,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		711C14C61CEB5E100042BB66 /* Bitmap_image */ = {
+			isa = PBXGroup;
+			children = (
+				711C14C71CEB5E390042BB66 /* bitmap_image.hpp */,
+			);
+			name = Bitmap_image;
+			path = CompressioneDCT;
+			sourceTree = "<group>";
+		};
+		711C14CB1CEB5EB50042BB66 /* Img */ = {
+			isa = PBXGroup;
+			children = (
+				711C14CA1CEB5EAD0042BB66 /* flower_foveon.bmp */,
+				711C14CD1CEB5FB40042BB66 /* cathedral.bmp */,
+			);
+			name = Img;
+			sourceTree = "<group>";
+		};
 		716294181CE633D0009026E7 /* GTK-3.0 */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,9 +121,11 @@
 		7183F0641CE5C7BA003B026B = {
 			isa = PBXGroup;
 			children = (
+				711C14C61CEB5E100042BB66 /* Bitmap_image */,
 				716294181CE633D0009026E7 /* GTK-3.0 */,
 				7183F06F1CE5C7BA003B026B /* CompressioneDCT */,
 				7183F06E1CE5C7BA003B026B /* Products */,
+				711C14CB1CEB5EB50042BB66 /* Img */,
 			);
 			sourceTree = "<group>";
 		};

@@ -61,6 +61,17 @@ public:
 				  data_[y_s_offset + x_s_offset + 1],
 				  data_[y_s_offset + x_s_offset + 2]);
 	}
+	
+	//Convert an RGB value to YCbCr and return only Y value
+	inline double* get_ycbcr(){
+		double* y  = new double [this->pixel_count()];
+		double* cb = new double [this->pixel_count()];
+		double* cr = new double [this->pixel_count()];
+		export_ycbcr(y,cb,cr);
+		delete[] cb;
+		delete[] cr;
+		return y;
+	}
 };
 
 #endif /* bitmap_plus_h */

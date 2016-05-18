@@ -56,6 +56,7 @@
 		7183F0701CE5C7BA003B026B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_plus.hpp; sourceTree = "<group>"; };
 		719C20531CEC7870008CF0C3 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = /opt/local/lib/libfftw3.a; sourceTree = "<absolute>"; };
+		71DCBB791CECABC700C41ECE /* DCT.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DCT.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +144,7 @@
 			children = (
 				719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */,
 				7183F0701CE5C7BA003B026B /* main.cpp */,
+				71DCBB791CECABC700C41ECE /* DCT.hpp */,
 			);
 			path = CompressioneDCT;
 			sourceTree = "<group>";

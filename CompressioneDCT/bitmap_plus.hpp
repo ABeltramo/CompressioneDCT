@@ -14,6 +14,7 @@
 class bitmap_plus : public bitmap_image{
 public:
 	bitmap_plus(const std::string& filename): bitmap_image(filename){}
+	bitmap_plus(): bitmap_image(){}
 	
 	//Aggiunge altezza all'immagine
 	inline void set_height(const unsigned int height){

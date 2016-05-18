@@ -20,6 +20,7 @@
 		716294151CE633A3009026E7 /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294141CE633A3009026E7 /* libglib-2.0.a */; };
 		716294171CE633AB009026E7 /* libintl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294161CE633AB009026E7 /* libintl.a */; };
 		7183F0711CE5C7BA003B026B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7183F0701CE5C7BA003B026B /* main.cpp */; };
+		719C20541CEC7870008CF0C3 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 719C20531CEC7870008CF0C3 /* libfftw3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -54,6 +55,7 @@
 		7183F06D1CE5C7BA003B026B /* CompressioneDCT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompressioneDCT; sourceTree = BUILT_PRODUCTS_DIR; };
 		7183F0701CE5C7BA003B026B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_plus.hpp; sourceTree = "<group>"; };
+		719C20531CEC7870008CF0C3 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = /opt/local/lib/libfftw3.a; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				716294131CE6339A009026E7 /* libgobject-2.0.a in Frameworks */,
 				716294151CE633A3009026E7 /* libglib-2.0.a in Frameworks */,
 				716294171CE633AB009026E7 /* libintl.a in Frameworks */,
+				719C20541CEC7870008CF0C3 /* libfftw3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +121,7 @@
 		7183F0641CE5C7BA003B026B = {
 			isa = PBXGroup;
 			children = (
+				719C20551CEC789F008CF0C3 /* FFTW3 */,
 				711C14C61CEB5E100042BB66 /* Bitmap_image */,
 				716294181CE633D0009026E7 /* GTK-3.0 */,
 				7183F06F1CE5C7BA003B026B /* CompressioneDCT */,
@@ -141,6 +145,14 @@
 				7183F0701CE5C7BA003B026B /* main.cpp */,
 			);
 			path = CompressioneDCT;
+			sourceTree = "<group>";
+		};
+		719C20551CEC789F008CF0C3 /* FFTW3 */ = {
+			isa = PBXGroup;
+			children = (
+				719C20531CEC7870008CF0C3 /* libfftw3.a */,
+			);
+			name = FFTW3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

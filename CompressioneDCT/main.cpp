@@ -3,6 +3,8 @@ using namespace std;
 
 #include "bitmap_plus.hpp"
 
+#include <fftw3.h>
+
 int N = 2;
 int blockSize = N*8;
 int quality = 80;
@@ -37,6 +39,20 @@ void scaleImage(bitmap_plus & img){
 }
 
 
+bitmap_plus getSingleBlock(bitmap_plus & img,unsigned int x,unsigned int y){
+	bitmap_plus region;
+	img.region(x, y, blockSize, blockSize, region);
+	return region;
+}
+
+void DCT2Apply(bitmap_plus & img){
+	for(int i=0;i<img.width()-blockSize;i+=blockSize){
+		for(int j=0; j<img.height()-blockSize; j+=blockSize){
+			
+		}
+	}
+}
+
 int main()
 {
 	bitmap_plus image(sourceImage);
@@ -48,8 +64,7 @@ int main()
 	}
 	
 	scaleImage(image);
-	
-	image.save_image("result.bmp");
+	//image.save_image("result.bmp");
 	
 	return 0;
 }

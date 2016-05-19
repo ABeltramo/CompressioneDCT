@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		711C14CE1CEB5FD30042BB66 /* cathedral.bmp in CopyFiles */ = {isa = PBXBuildFile; fileRef = 711C14CD1CEB5FB40042BB66 /* cathedral.bmp */; };
+		713A2C291CEDEE2A0074EC17 /* GUI.glade in CopyFiles */ = {isa = PBXBuildFile; fileRef = 713A2C281CEDEDEE0074EC17 /* GUI.glade */; };
 		716294041CE6332A009026E7 /* libgtk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294031CE6332A009026E7 /* libgtk-3.a */; };
 		716294051CE63338009026E7 /* libgdk-3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716293FE1CE63249009026E7 /* libgdk-3.a */; };
 		716294071CE63342009026E7 /* libpangocairo-1.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 716294061CE63342009026E7 /* libpangocairo-1.0.a */; };
@@ -31,6 +32,7 @@
 			dstSubfolderSpec = 6;
 			files = (
 				711C14CE1CEB5FD30042BB66 /* cathedral.bmp in CopyFiles */,
+				713A2C291CEDEE2A0074EC17 /* GUI.glade in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,6 +41,7 @@
 /* Begin PBXFileReference section */
 		711C14C71CEB5E390042BB66 /* bitmap_image.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_image.hpp; sourceTree = "<group>"; };
 		711C14CD1CEB5FB40042BB66 /* cathedral.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = cathedral.bmp; sourceTree = "<group>"; };
+		713A2C281CEDEDEE0074EC17 /* GUI.glade */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = GUI.glade; path = CompressioneDCT/GUI.glade; sourceTree = "<group>"; };
 		716293FD1CE63249009026E7 /* libgdk-3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libgdk-3.0.dylib"; path = "/opt/local/lib/libgdk-3.0.dylib"; sourceTree = "<absolute>"; };
 		716293FE1CE63249009026E7 /* libgdk-3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgdk-3.a"; path = "/opt/local/lib/libgdk-3.a"; sourceTree = "<absolute>"; };
 		716294011CE63275009026E7 /* libcairo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcairo.a; path = /opt/local/lib/libcairo.a; sourceTree = "<absolute>"; };
@@ -52,6 +55,7 @@
 		716294121CE6339A009026E7 /* libgobject-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgobject-2.0.a"; path = "/opt/local/lib/libgobject-2.0.a"; sourceTree = "<absolute>"; };
 		716294141CE633A3009026E7 /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "/opt/local/lib/libglib-2.0.a"; sourceTree = "<absolute>"; };
 		716294161CE633AB009026E7 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = /opt/local/lib/libintl.a; sourceTree = "<absolute>"; };
+		716461D21CEDE80900D547E2 /* GUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = GUI.hpp; path = ../GUI.hpp; sourceTree = "<group>"; };
 		7183F06D1CE5C7BA003B026B /* CompressioneDCT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompressioneDCT; sourceTree = BUILT_PRODUCTS_DIR; };
 		7183F0701CE5C7BA003B026B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_plus.hpp; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 				716294181CE633D0009026E7 /* GTK-3.0 */,
 				7183F06F1CE5C7BA003B026B /* CompressioneDCT */,
 				7183F06E1CE5C7BA003B026B /* Products */,
+				713A2C281CEDEDEE0074EC17 /* GUI.glade */,
 				711C14CB1CEB5EB50042BB66 /* Img */,
 			);
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			children = (
 				719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */,
 				7183F0701CE5C7BA003B026B /* main.cpp */,
+				716461D21CEDE80900D547E2 /* GUI.hpp */,
 				71DCBB791CECABC700C41ECE /* DCT.hpp */,
 			);
 			path = CompressioneDCT;

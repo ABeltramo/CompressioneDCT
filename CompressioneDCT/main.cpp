@@ -4,11 +4,14 @@ using namespace std;
 
 #include "bitmap_plus.hpp"
 typedef bitmap_plus::blocco blocco;
+
 #include "DCT.hpp"
 
-int N = 1;
+#include "GUI.hpp"
+
+int N = 2;
 int blockSize = N*8;
-int quality = 10;
+int quality = 90;
 string sourceImage = "img/big_tree.bmp";
 
 /******************************************************
@@ -125,37 +128,33 @@ void IDCT2Apply(vector<blocco*> v_blocchi){
 	}
 }
 
-
-/******************************************************
- * Main
- ******************************************************/
-int main(){
+void compute(){
 	bitmap_plus image(sourceImage);
 	
 	if (!image){
 		cout << "Error - Failed to open: input.bmp\n";
-		return 1;
+		return;
 	}
 	/*//DEBUG
-	double* y = getSingleBlock(image,0,0)->get_ycbcr();					// Recupero i valori per il canale Y
-	for(int i=0;i<blockSize*blockSize;i++){
+	 double* y = getSingleBlock(image,0,0)->get_ycbcr();					// Recupero i valori per il canale Y
+	 for(int i=0;i<blockSize*blockSize;i++){
 		if(i%blockSize == 0)
-			cout << endl;
+	 cout << endl;
 		cout << y[i] << " ";
-	}
-	cout << endl;
-	*/
+	 }
+	 cout << endl;
+	 */
 	scaleImage(image);
 	image.save_image("before.bmp");
 	image.get_ycbcr();
 	vector<blocco*> blocchi = DCT2Apply(image);
 	/*//DEBUG
-	for(int i=0;i<blockSize*blockSize;i++){
+	 for(int i=0;i<blockSize*blockSize;i++){
 		if(i%blockSize == 0)
-			cout << endl;
+	 cout << endl;
 		cout << blocchi[0]->data[i] << " ";
-	}
-	*/
+	 }
+	 */
 	quantizza(blocchi);
 	/*//DEBUG
 	 for(int i=0;i<blockSize*blockSize;i++){
@@ -175,6 +174,11 @@ int main(){
 	 */
 	image.import_block(blocchi,blockSize);
 	image.save_image("after.bmp");
-	
-	return 0;
+}
+
+/******************************************************
+ * Main
+ ******************************************************/
+int main(int argc, char *argv[]){
+	return start(argc,argv);
 }

@@ -11,13 +11,13 @@
 
 #include "bitmap_image.hpp"
 
-struct blocco{
-	double * data;
-	int x,y;
-};
-
 class bitmap_plus : public bitmap_image{
 public:
+	struct blocco{
+		double * data;
+		bitmap_plus * region;
+	};
+	
 	bitmap_plus(const std::string& filename): bitmap_image(filename){}
 	bitmap_plus(): bitmap_image(){}
 	
@@ -78,8 +78,21 @@ public:
 		return y;
 	}
 	
-	inline void import_block(vector<double*> blocchi){
-		double *y;
+	inline void import_block(vector<blocco*> blocchi, int blockSize){
+		double *y = new double[this->pixel_count()];
+		clear();
+		int count = 0;
+		int lineBlock = width_/blockSize;
+		for(int h=0; h<height_; h++){
+			for(int w=0;w<width_;w++){
+				//				N° blocco	 + (H			  * Blocchi su una riga)
+				int region = (w / blockSize) + ((h/blockSize) * lineBlock) ;
+				int pixel = (h*blockSize) + (w % blockSize);
+				pixel %= (blockSize*blockSize);
+				y[count++] = blocchi[region]->data[pixel];
+			}
+		}
+		import_ycbcr(y, _cb, _cr);
 	}
 };
 

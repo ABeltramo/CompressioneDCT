@@ -3,13 +3,13 @@
 using namespace std;
 
 #include "bitmap_plus.hpp"
-
+typedef bitmap_plus::blocco blocco;
 #include "DCT.hpp"
 
-int N = 2;
+int N = 1;
 int blockSize = N*8;
-int quality = 95;
-string sourceImage = "img/cathedral.bmp";
+int quality = 10;
+string sourceImage = "img/big_tree.bmp";
 
 /******************************************************
  * 1 - Scala l'immagine se non è divisibile per 8N
@@ -21,7 +21,7 @@ void scaleImage(bitmap_plus & img){
 	// L'ordine di queste due operazioni conta!
 	// Non spostare!
 	if(width % blockSize != 0){ // Completamento colonne
-		cout << "Larghezza: " << width << " aggiungo " << (blockSize - (width % blockSize)) << "px colonne" << endl;
+		//cout << "Larghezza: " << width << " aggiungo " << (blockSize - (width % blockSize)) << "px colonne" << endl;
 		int newWidth = width + (blockSize - (width % blockSize));
 		img.set_width(newWidth);
 		// Clone last bit
@@ -30,7 +30,7 @@ void scaleImage(bitmap_plus & img){
 				img.set_pixel(j,i,width-1,i);
 	}
 	if(height % blockSize != 0){ // Completamento righe
-		cout << "Altezza: " << height << " aggiungo " << (blockSize - (height % blockSize)) << "px righe" << endl;
+		//cout << "Altezza: " << height << " aggiungo " << (blockSize - (height % blockSize)) << "px righe" << endl;
 		int newHeight = height + (blockSize - (height % blockSize));
 		img.set_height(newHeight);
 		// Clone last bit
@@ -43,23 +43,20 @@ void scaleImage(bitmap_plus & img){
 /******************************************************
  * 2 - Applica la DCT ad ogni blocco
  ******************************************************/
-bitmap_plus getSingleBlock(bitmap_plus & img,unsigned int x,unsigned int y){
-	bitmap_plus region;
-	img.region(x, y, blockSize, blockSize, region);
+bitmap_plus* getSingleBlock(bitmap_plus & img,unsigned int x,unsigned int y){
+	bitmap_plus *region = new bitmap_plus;
+	img.region(x, y, blockSize, blockSize, *region);
 	return region;
 }
 
 vector<blocco*> DCT2Apply(bitmap_plus & img){
 	vector<blocco*> v_blocchi;
-	for(int i=0;i<img.width()-blockSize;i+=blockSize){
-		for(int j=0; j<img.height()-blockSize; j+=blockSize){
-			bitmap_plus region = getSingleBlock(img,i,j);	// Recupero i valori per il blocco 8N
-			double* ris = dct2(blockSize,blockSize,region.get_ycbcr());		// Calcolo la DCT
+	for(int j=0; j<img.height(); j+=blockSize){
+		for(int i=0;i<img.width();i+=blockSize){
 			//Salvo il blocco
 			blocco *b = new blocco;
-			b->data = ris;
-			b->x = i;
-			b->y = j;
+			b->region = getSingleBlock(img,i,j); // Recupero i valori per il blocco 8N
+			b->data = dct2(blockSize,blockSize,b->region->get_ycbcr()); // Calcolo da DCT
 			v_blocchi.push_back(b);
 		}
 	}
@@ -110,7 +107,7 @@ void quantizza(vector<blocco*> immagine){
 			QNLin[pos++] = QN[i][j];
 	
 	//Quantizzo ogni blocco
-	for(int i=0;i<blockSize*blockSize;i++){ // per ogni blocco
+	for(int i=0;i<immagine.size();i++){ // per ogni blocco
 		for(int j=0;j<blockSize*blockSize;j++){ // Per ogni pixel
 			double val = immagine[i]->data[j];
 			immagine[i]->data[j] = (double)(1.0*round(val/QNLin[j]))*QNLin[j];
@@ -123,7 +120,7 @@ void quantizza(vector<blocco*> immagine){
  ******************************************************/
 
 void IDCT2Apply(vector<blocco*> v_blocchi){
-	for(int i=0;i<blockSize*blockSize;i++){
+	for(int i=0;i<v_blocchi.size();i++){
 		v_blocchi[i]->data = idct2(blockSize,blockSize,v_blocchi[i]->data);		// Calcolo la DCT inversa
 	}
 }
@@ -139,39 +136,45 @@ int main(){
 		cout << "Error - Failed to open: input.bmp\n";
 		return 1;
 	}
-	bitmap_plus region = getSingleBlock(image,0,0);	// Recupero i valori per il blocco 8N
-	double* y = region.get_ycbcr();					// Recupero i valori per il canale Y
+	/*//DEBUG
+	double* y = getSingleBlock(image,0,0)->get_ycbcr();					// Recupero i valori per il canale Y
 	for(int i=0;i<blockSize*blockSize;i++){
 		if(i%blockSize == 0)
 			cout << endl;
 		cout << y[i] << " ";
 	}
-	
-	scaleImage(image);
-	vector<blocco*> blocchi = DCT2Apply(image);
-	for(int i=0;i<blockSize*blockSize;i++){
-		if(i%blockSize == 0)
-			cout << endl;
-		cout << blocchi[0]->data[i] << " ";
-	}
-	
-	quantizza(blocchi);
 	cout << endl;
+	*/
+	scaleImage(image);
+	image.save_image("before.bmp");
+	image.get_ycbcr();
+	vector<blocco*> blocchi = DCT2Apply(image);
+	/*//DEBUG
 	for(int i=0;i<blockSize*blockSize;i++){
 		if(i%blockSize == 0)
 			cout << endl;
 		cout << blocchi[0]->data[i] << " ";
 	}
+	*/
+	quantizza(blocchi);
+	/*//DEBUG
+	 for(int i=0;i<blockSize*blockSize;i++){
+		if(i%blockSize == 0)
+	 cout << endl;
+		cout << blocchi[0]->data[i] << " ";
+	 }
+	 */
 	
 	IDCT2Apply(blocchi);
-	cout << endl;
-	for(int i=0;i<blockSize*blockSize;i++){
+	/*//DEBUG
+	 for(int i=0;i<blockSize*blockSize;i++){
 		if(i%blockSize == 0)
-			cout << endl;
+	 cout << endl;
 		cout << blocchi[0]->data[i] << " ";
-	}
-	
-	//image.save_image("result.bmp");
+	 }
+	 */
+	image.import_block(blocchi,blockSize);
+	image.save_image("after.bmp");
 	
 	return 0;
 }

@@ -1509,6 +1509,8 @@ private:
       }
    }
 
+protected:
+	
    template <typename T>
    inline T clamp(const T& v, const T& lower_range, const T& upper_range)
    {
@@ -1520,7 +1522,7 @@ private:
          return v;
    }
 
-protected:
+
    std::string  file_name_;
    unsigned int width_;
    unsigned int height_;

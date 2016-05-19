@@ -25,7 +25,6 @@ void normalizza(int m, int n, double * array)
 	for(int i = 0; i < m; i++){
 		for(int j = 0; j < n; j++){
 			array[i*n + j] /= norm1;
-			//array[i*n + j] /= norm2;
 		}
 	}
 	
@@ -36,6 +35,30 @@ void normalizza(int m, int n, double * array)
 	// normalizzazione prima colonna
 	for(int j = 0; j < (m*n); j+=n)
 		array[j] /= norm2;
+}
+
+double * dct2(int height, int width, double* yChannel){
+	// setup input e output
+	double * out = (double *) malloc(sizeof(double) * height * width);
+	
+	// do the fftw3 magic
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out, FFTW_REDFT10,
+									  FFTW_REDFT10, FFTW_ESTIMATE);
+	fftw_execute(plan);
+	
+	// normalizzazione
+	normalizza(height, width, out);
+	return out;
+}
+
+void scala(int m, int n, double * array)
+{
+	double scale = 4.0 * m * n;
+	// scala globale
+	for(int i = 0; i < m; i++){
+		for(int j = 0; j < n; j++)
+			array[i*n + j] /= scale;
+	}
 }
 
 void denormalizza(int m, int n, double * array){
@@ -57,17 +80,20 @@ void denormalizza(int m, int n, double * array){
 		array[j] *= norm2;
 }
 
-double * dct2(int height, int width, double* yChannel){
+double * idct2(int height, int width, double * yChannel)
+{
 	// setup input e output
 	double * out = (double *) malloc(sizeof(double) * height * width);
 	
-	// do the fftw3 magic
-	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out, FFTW_REDFT10,
-									  FFTW_REDFT10, FFTW_ESTIMATE);
-	fftw_execute(plan);
+	// denormalizzazione
+	denormalizza(height, width, yChannel);
 	
-	// normalizzazione
-	normalizza(height, width, out);
+	// do the fftw3 magic
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out, FFTW_REDFT01,
+									  FFTW_REDFT01, FFTW_ESTIMATE);
+	fftw_execute(plan);
+	scala(height, width, out);
+	
 	return out;
 }
 
@@ -80,12 +106,25 @@ void testDCT2(){
 		97, 195, 203, 47, 125, 114, 165, 181,
 		193, 70, 174, 167, 41, 30, 127, 245,
 		87, 149, 57, 192, 65, 129, 178, 228};
+	for(int i=0;i<64;i++){
+		if(i%8 == 0)
+			cout << endl;
+		cout << input[i] << " ";
+	}
+	cout << endl << endl << "DCT2:" << endl;
 	double *in = input;
 	double *test = dct2(8,8,in);
 	for(int i=0;i<64;i++){
 		if(i%8 == 0)
 			cout << endl;
 		cout << test[i] << " ";
+	}
+	cout << endl << endl << "Inversa:" << endl;
+	double *out = idct2(8,8,test);
+	for(int i=0;i<64;i++){
+		if(i%8 == 0)
+			cout << endl;
+		cout << out[i] << " ";
 	}
 }
 

@@ -8,7 +8,7 @@ using namespace std;
 
 int N = 2;
 int blockSize = N*8;
-int quality = 80;
+int quality = 95;
 string sourceImage = "img/cathedral.bmp";
 
 /******************************************************
@@ -49,11 +49,6 @@ bitmap_plus getSingleBlock(bitmap_plus & img,unsigned int x,unsigned int y){
 	return region;
 }
 
-struct blocco{
-	double * data;
-	int x,y;
-};
-
 vector<blocco*> DCT2Apply(bitmap_plus & img){
 	vector<blocco*> v_blocchi;
 	for(int i=0;i<img.width()-blockSize;i+=blockSize){
@@ -66,8 +61,6 @@ vector<blocco*> DCT2Apply(bitmap_plus & img){
 			b->x = i;
 			b->y = j;
 			v_blocchi.push_back(b);
-			//Pulizia memoria
-			delete[] ris;
 		}
 	}
 	return v_blocchi;
@@ -118,12 +111,23 @@ void quantizza(vector<blocco*> immagine){
 	
 	//Quantizzo ogni blocco
 	for(int i=0;i<blockSize*blockSize;i++){ // per ogni blocco
-		for(int j=0;j<blockSize*blockSize;j++){
+		for(int j=0;j<blockSize*blockSize;j++){ // Per ogni pixel
 			double val = immagine[i]->data[j];
-			immagine[i]->data[j] = (double)round((double)val/QNLin[j])*QNLin[j];
+			immagine[i]->data[j] = (double)(1.0*round(val/QNLin[j]))*QNLin[j];
 		}
 	}
 }
+
+/******************************************************
+ * 4- DCT Inversa
+ ******************************************************/
+
+void IDCT2Apply(vector<blocco*> v_blocchi){
+	for(int i=0;i<blockSize*blockSize;i++){
+		v_blocchi[i]->data = idct2(blockSize,blockSize,v_blocchi[i]->data);		// Calcolo la DCT inversa
+	}
+}
+
 
 /******************************************************
  * Main
@@ -158,8 +162,14 @@ int main(){
 			cout << endl;
 		cout << blocchi[0]->data[i] << " ";
 	}
-	//testDCT2();
 	
+	IDCT2Apply(blocchi);
+	cout << endl;
+	for(int i=0;i<blockSize*blockSize;i++){
+		if(i%blockSize == 0)
+			cout << endl;
+		cout << blocchi[0]->data[i] << " ";
+	}
 	
 	//image.save_image("result.bmp");
 	

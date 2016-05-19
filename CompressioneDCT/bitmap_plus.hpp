@@ -11,6 +11,11 @@
 
 #include "bitmap_image.hpp"
 
+struct blocco{
+	double * data;
+	int x,y;
+};
+
 class bitmap_plus : public bitmap_image{
 public:
 	bitmap_plus(const std::string& filename): bitmap_image(filename){}
@@ -62,15 +67,19 @@ public:
 				  data_[y_s_offset + x_s_offset + 2]);
 	}
 	
+	double* _cb;
+	double* _cr;
 	//Convert an RGB value to YCbCr and return only Y value
 	inline double* get_ycbcr(){
 		double* y  = new double [this->pixel_count()];
-		double* cb = new double [this->pixel_count()];
-		double* cr = new double [this->pixel_count()];
-		export_ycbcr(y,cb,cr);
-		delete[] cb;
-		delete[] cr;
+		_cb = new double [this->pixel_count()];
+		_cr = new double [this->pixel_count()];
+		export_ycbcr(y,_cb,_cr);
 		return y;
+	}
+	
+	inline void import_block(vector<double*> blocchi){
+		double *y;
 	}
 };
 

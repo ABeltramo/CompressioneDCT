@@ -11,16 +11,23 @@
 
 #include "bitmap_image.hpp"
 
+// Ridefinisco la libreria trovata online per aggiungere dei metodi che mancavano
+// Questi metodi semplificano molto la lettura del codice nel main
 class bitmap_plus : public bitmap_image{
 public:
-	struct blocco{
-		double * data;
-		bitmap_plus * region;
+	struct blocco{		// Rappresenta il singolo blocco su cui opera la DCT2
+		double * data;	// Contiene solamente un vettore di dati
 	};
 	
+	/******************************************************
+	 * Costruttori
+	 ******************************************************/
 	bitmap_plus(const std::string& filename): bitmap_image(filename){}
 	bitmap_plus(): bitmap_image(){}
 	
+	/******************************************************
+	 * 1 - Funzioni per modificare la dimensione di un BMP
+	 ******************************************************/
 	//Aggiunge altezza all'immagine
 	inline void set_height(const unsigned int height){
 		bitmap_plus clone(*this);
@@ -56,6 +63,7 @@ public:
 	}
 	
 	// Copia l'informazione di un pixel in un altra locazione
+	// Usata per ricopiare le ultime righe/colonne quando allargo l'immagine
 	inline void set_pixel(const unsigned int x, const unsigned int y,
 						  const unsigned int x_source, const unsigned int y_source)
 	{
@@ -67,10 +75,12 @@ public:
 				  data_[y_s_offset + x_s_offset + 2]);
 	}
 	
-	double* _cb;
-	double* _cr;
-	//Convert an RGB value to YCbCr and return only Y value
-	inline double* get_ycbcr(){
+	/******************************************************
+	 * 2 - Funzione per manipolare il canale Y (CbCr)
+	 ******************************************************/
+	double* _cb;				// Le mantengo salvate
+	double* _cr;				// Dovrò aggiungerle al termine della modifica
+	inline double* get_ycbcr(){ //Convert an RGB value to YCbCr and return only Y value
 		double* y  = new double [this->pixel_count()];
 		_cb = new double [this->pixel_count()];
 		_cr = new double [this->pixel_count()];
@@ -78,21 +88,24 @@ public:
 		return y;
 	}
 	
+	/******************************************************
+	 * 3 - Funzione per ricostruire un immagine partendo da
+	 *	   un vettore di blocchetti
+	 ******************************************************/
 	inline void import_block(vector<blocco*> blocchi, int blockSize){
 		double *y = new double[this->pixel_count()];
-		clear();
-		int count = 0;
-		int lineBlock = width_/blockSize;
-		for(int h=0; h<height_; h++){
-			for(int w=0;w<width_;w++){
+		this->clear();										// Per sicurezza: rimuovo tutto il contenuto dall'immagine
+		int count = 0;										// Contatore di dove mi trovo nel vettore
+		int lineBlock = width_/blockSize;					// Quanti blocchi ci sono in una riga
+		for(int h=0; h<height_; h++){						// Scandisco l'altezza
+			for(int w=0;w<width_;w++){						// Scandisco la larghezza
 				//				N° blocco	 + (H			  * Blocchi su una riga)
 				int region = (w / blockSize) + ((h/blockSize) * lineBlock) ;
-				int pixel = (h*blockSize) + (w % blockSize);
-				pixel %= (blockSize*blockSize);
-				y[count++] = blocchi[region]->data[pixel];
+				int pixel = ((h*blockSize) + (w % blockSize)) %(blockSize*blockSize);
+				y[count++] = blocchi[region]->data[pixel];	// Stendo i pixel in un vettore rispettando il posizionamento
 			}
 		}
-		import_ycbcr(y, _cb, _cr);
+		import_ycbcr(y, _cb, _cr);							// Finalmente importo i Cb e Cr vecchi ed aggiungo il nuovo Y
 	}
 };
 

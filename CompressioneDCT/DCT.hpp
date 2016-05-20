@@ -9,94 +9,78 @@
 #ifndef DCT_h
 #define DCT_h
 
-#include <complex.h>
 #include <fftw3.h>
-#include <inttypes.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdio.h>
 
-void normalizza(int m, int n, double * array)
-{
+// La normalizzazione è necessaria in quanto i dati di FFTW3
+// Differiscono da quelli di Matlab a meno di costanti
+void normalizza(int m, int n, double * array){
 	double norm1 = 4 * sqrt(m/2.0) * sqrt(n/2.0);
 	double norm2 = sqrt(2);
-	
-	// normalizzazione globale
-	for(int i = 0; i < m; i++){
+	for(int i = 0; i < m; i++){			// normalizzazione globale
 		for(int j = 0; j < n; j++){
 			array[i*n + j] /= norm1;
 		}
 	}
-	
-	// normalizzazione prima riga
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i < n; i++)			// normalizzazione prima riga
 		array[i] /= norm2;
-	
-	// normalizzazione prima colonna
-	for(int j = 0; j < (m*n); j+=n)
+	for(int j = 0; j < (m*n); j+=n)		// normalizzazione prima colonna
 		array[j] /= norm2;
 }
 
-double * dct2(int height, int width, double* yChannel){
-	// setup input e output
-	double * out = (double *) malloc(sizeof(double) * height * width);
-	
-	// do the fftw3 magic
-	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out, FFTW_REDFT10,
-									  FFTW_REDFT10, FFTW_ESTIMATE);
-	fftw_execute(plan);
-	
-	// normalizzazione
-	normalizza(height, width, out);
-	return out;
-}
-
-void scala(int m, int n, double * array)
-{
-	double scale = 4.0 * m * n;
-	// scala globale
-	for(int i = 0; i < m; i++){
-		for(int j = 0; j < n; j++)
-			array[i*n + j] /= scale;
-	}
-}
-
+// Esegue esattamente l'inverso della funzione sopra
 void denormalizza(int m, int n, double * array){
 	double norm1 = 4 * sqrt(m/2.0) * sqrt(n/2.0);
 	double norm2 = sqrt(2);
-	
-	// normalizzazione globale
-	for(int i = 0; i < m; i++){
+	for(int i = 0; i < m; i++){			// normalizzazione globale
 		for(int j = 0; j < n; j++)
 			array[i*n + j] *= norm1;
 	}
-	
-	// normalizzazione prima riga
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i < n; i++)			// normalizzazione prima riga
 		array[i] *= norm2;
-	
-	// normalizzazione prima colonna
-	for(int j = 0; j < (m*n); j+=n)
+	for(int j = 0; j < (m*n); j+=n)		// normalizzazione prima colonna
 		array[j] *= norm2;
 }
 
-double * idct2(int height, int width, double * yChannel)
-{
-	// setup input e output
-	double * out = (double *) malloc(sizeof(double) * height * width);
+// DCT2
+double * dct2(int height, int width, double* yChannel){
+	double * out = (double *) malloc(sizeof(double) * height * width); // Alloco il vettore di output
+	
+	// do the fftw3 magic
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,
+									  FFTW_REDFT10, FFTW_REDFT10, FFTW_ESTIMATE); // FFTW_REDFT10
+	fftw_execute(plan);
+	
+	normalizza(height, width, out); // normalizzazione
+	return out;
+}
+
+// DCT2 inversa
+double * idct2(int height, int width, double * yChannel){
+	double * out = (double *) malloc(sizeof(double) * height * width); // Alloco il vettore di output
 	
 	// denormalizzazione
 	denormalizza(height, width, yChannel);
 	
 	// do the fftw3 magic
-	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out, FFTW_REDFT01,
-									  FFTW_REDFT01, FFTW_ESTIMATE);
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,
+									  FFTW_REDFT01, FFTW_REDFT01, FFTW_ESTIMATE); // FFTW_REDFT01 (01 per l'inversa)
 	fftw_execute(plan);
-	scala(height, width, out);
+	
+	// Scala i risultati di una costante
+	double scale = 4.0 * height * width;
+	for(int i = 0; i < height; i++)
+		for(int j = 0; j < width; j++)
+			out[i*width + j] /= scale;
 	
 	return out;
 }
 
+
+/*
+ * TEST della DCT2:
+ * Partendo da dati noti stampo i valori ottenuti dalle due iterazioni della DCT
+ * Si spera che alla fine ottengo la stessa tabella di input
+ */
 void testDCT2(){
 	double input[] = {231, 32, 233, 161, 24, 71, 140, 245,
 		247, 40, 248, 245, 124, 204, 36, 107,

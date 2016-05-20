@@ -34,9 +34,33 @@
 						<property name="vexpand">True</property>
 						<property name="orientation">vertical</property>
 						<child>
-							<object class="GtkFileChooserButton" id="BtnScegliFile">
+							<object class="GtkGrid" id="grid1">
 								<property name="visible">True</property>
 								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkFileChooserButton" id="BtnScegliFile">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="hexpand">True</property>
+									</object>
+									<packing>
+										<property name="left_attach">1</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel" id="label1">
+										<property name="width_request">110</property>
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="hexpand">True</property>
+										<property name="label" translatable="yes">Scegli un file: </property>
+									</object>
+									<packing>
+										<property name="left_attach">0</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
 							</object>
 							<packing>
 								<property name="expand">False</property>
@@ -45,13 +69,37 @@
 							</packing>
 						</child>
 						<child>
-							<object class="GtkScale" id="scale1">
+							<object class="GtkGrid" id="grid2">
 								<property name="visible">True</property>
-								<property name="can_focus">True</property>
-								<property name="adjustment">adjustment1</property>
-								<property name="fill_level">100</property>
-								<property name="round_digits">1</property>
-								<property name="digits">0</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkScale" id="scale1">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="hexpand">True</property>
+										<property name="adjustment">adjustment1</property>
+										<property name="fill_level">100</property>
+										<property name="round_digits">1</property>
+										<property name="digits">0</property>
+										<property name="value_pos">left</property>
+									</object>
+									<packing>
+										<property name="left_attach">1</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel" id="label2">
+										<property name="width_request">180</property>
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes">Qualità: </property>
+									</object>
+									<packing>
+										<property name="left_attach">0</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
 							</object>
 							<packing>
 								<property name="expand">False</property>
@@ -60,13 +108,37 @@
 							</packing>
 						</child>
 						<child>
-							<object class="GtkScale" id="scale2">
+							<object class="GtkGrid" id="grid3">
 								<property name="visible">True</property>
-								<property name="can_focus">True</property>
-								<property name="adjustment">adjustment2</property>
-								<property name="fill_level">10</property>
-								<property name="round_digits">1</property>
-								<property name="digits">0</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkScale" id="scale2">
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="hexpand">True</property>
+										<property name="adjustment">adjustment2</property>
+										<property name="fill_level">10</property>
+										<property name="round_digits">1</property>
+										<property name="digits">0</property>
+										<property name="value_pos">left</property>
+									</object>
+									<packing>
+										<property name="left_attach">1</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel" id="label3">
+										<property name="width_request">178</property>
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes">Dimensione blocchi (8*N)</property>
+									</object>
+									<packing>
+										<property name="left_attach">0</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
 							</object>
 							<packing>
 								<property name="expand">False</property>
@@ -89,6 +161,80 @@
 								<property name="position">3</property>
 							</packing>
 						</child>
+						<child>
+							<object class="GtkGrid" id="grid4">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkSpinner" id="Spinner">
+										<property name="can_focus">False</property>
+										<property name="active">True</property>
+									</object>
+									<packing>
+										<property name="left_attach">0</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkLabel" id="lblStato">
+										<property name="can_focus">False</property>
+										<property name="label" translatable="yes">Stato</property>
+									</object>
+									<packing>
+										<property name="left_attach">1</property>
+										<property name="top_attach">0</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">True</property>
+								<property name="position">4</property>
+							</packing>
+						</child>
+						<child>
+							<object class="GtkBox" id="box4">
+								<property name="visible">True</property>
+								<property name="can_focus">False</property>
+								<child>
+									<object class="GtkButton" id="BtnAumenta">
+										<property name="label">gtk-zoom-in</property>
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="receives_default">True</property>
+										<property name="relief">none</property>
+										<property name="use_stock">True</property>
+										<property name="always_show_image">True</property>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">False</property>
+										<property name="position">0</property>
+									</packing>
+								</child>
+								<child>
+									<object class="GtkButton" id="BtnRiduci">
+										<property name="label">gtk-zoom-out</property>
+										<property name="visible">True</property>
+										<property name="can_focus">True</property>
+										<property name="receives_default">True</property>
+										<property name="relief">none</property>
+										<property name="use_stock">True</property>
+										<property name="always_show_image">True</property>
+									</object>
+									<packing>
+										<property name="expand">False</property>
+										<property name="fill">False</property>
+										<property name="position">1</property>
+									</packing>
+								</child>
+							</object>
+							<packing>
+								<property name="expand">False</property>
+								<property name="fill">False</property>
+								<property name="position">5</property>
+							</packing>
+						</child>
 					</object>
 					<packing>
 						<property name="expand">False</property>
@@ -104,14 +250,27 @@
 						<property name="vexpand">True</property>
 						<property name="orientation">vertical</property>
 						<child>
-							<object class="GtkImage" id="Img1">
+							<object class="GtkScrolledWindow" id="scrolledwindow1">
 								<property name="width_request">200</property>
 								<property name="visible">True</property>
-								<property name="can_focus">False</property>
+								<property name="can_focus">True</property>
 								<property name="hexpand">True</property>
 								<property name="vexpand">True</property>
-								<property name="stock">gtk-missing-image</property>
-								<property name="icon_size">0</property>
+								<property name="kinetic_scrolling">False</property>
+								<child>
+									<object class="GtkViewport" id="viewport2">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="shadow_type">none</property>
+										<child>
+											<object class="GtkImage" id="Img1">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="stock">gtk-missing-image</property>
+											</object>
+										</child>
+									</object>
+								</child>
 							</object>
 							<packing>
 								<property name="expand">True</property>
@@ -120,13 +279,27 @@
 							</packing>
 						</child>
 						<child>
-							<object class="GtkImage" id="Img2">
+							<object class="GtkScrolledWindow" id="scrolledwindow2">
 								<property name="width_request">200</property>
 								<property name="visible">True</property>
-								<property name="can_focus">False</property>
+								<property name="can_focus">True</property>
 								<property name="hexpand">True</property>
 								<property name="vexpand">True</property>
-								<property name="stock">gtk-missing-image</property>
+								<property name="kinetic_scrolling">False</property>
+								<child>
+									<object class="GtkViewport" id="viewport1">
+										<property name="visible">True</property>
+										<property name="can_focus">False</property>
+										<property name="shadow_type">none</property>
+										<child>
+											<object class="GtkImage" id="Img2">
+												<property name="visible">True</property>
+												<property name="can_focus">False</property>
+												<property name="stock">gtk-missing-image</property>
+											</object>
+										</child>
+									</object>
+								</child>
 							</object>
 							<packing>
 								<property name="expand">True</property>

@@ -11,7 +11,7 @@ typedef bitmap_plus::blocco blocco;
 
 int N = 1;
 int blockSize = N*8;
-int quality = 40;
+int quality = 85;
 string sourceImage = "res/cathedral.bmp";
 bool debug = true;
 
@@ -197,7 +197,7 @@ void compute(){
  * Main
  ******************************************************/
 int main(int argc, char *argv[]){
-	compute();
-	//return start(argc,argv);
+	//compute();
+	return start(argc,argv);
 	return 0;
 }

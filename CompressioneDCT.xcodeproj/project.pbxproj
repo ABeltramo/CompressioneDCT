@@ -41,7 +41,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		7117113D1CEF3392009F9367 /* gtk-image-viewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "gtk-image-viewer.h"; path = "CompressioneDCT/gtk-image-viewer.h"; sourceTree = "<group>"; };
 		7117113E1CEF3547009F9367 /* GUI.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUI.hpp; sourceTree = "<group>"; };
 		711711401CEF3555009F9367 /* cathedral.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = cathedral.bmp; sourceTree = "<group>"; };
 		711711411CEF3555009F9367 /* GUI.glade */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = GUI.glade; sourceTree = "<group>"; };
@@ -90,14 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7117113C1CEF3339009F9367 /* gtkImageViewer */ = {
-			isa = PBXGroup;
-			children = (
-				7117113D1CEF3392009F9367 /* gtk-image-viewer.h */,
-			);
-			name = gtkImageViewer;
-			sourceTree = "<group>";
-		};
 		7117113F1CEF3555009F9367 /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,7 +132,6 @@
 		7183F0641CE5C7BA003B026B = {
 			isa = PBXGroup;
 			children = (
-				7117113C1CEF3339009F9367 /* gtkImageViewer */,
 				719C20551CEC789F008CF0C3 /* FFTW3 */,
 				711C14C61CEB5E100042BB66 /* Bitmap_image */,
 				716294181CE633D0009026E7 /* GTK-3.0 */,

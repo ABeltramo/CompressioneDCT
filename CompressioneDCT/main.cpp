@@ -12,7 +12,7 @@ typedef bitmap_plus::blocco blocco;
 int N = 2;
 int blockSize = N*8;
 int quality = 90;
-string sourceImage = "img/big_tree.bmp";
+string sourceImage = "res/big_tree.bmp";
 
 /******************************************************
  * 1 - Scala l'immagine se non è divisibile per 8N

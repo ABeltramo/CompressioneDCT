@@ -9,6 +9,11 @@
 #ifndef DCT_h
 #define DCT_h
 
+#include <iostream>
+#include <cmath>
+#include <cstdlib>
+using namespace std;
+
 #include <fftw3.h>
 
 // La normalizzazione è necessaria in quanto i dati di FFTW3

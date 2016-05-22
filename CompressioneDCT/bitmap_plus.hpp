@@ -10,6 +10,8 @@
 #define bitmap_plus_h
 
 #include "bitmap_image.hpp"
+#include <vector>
+using namespace std;
 
 // Ridefinisco la libreria trovata online per aggiungere dei metodi che mancavano
 // Questi metodi semplificano molto la lettura del codice nel main

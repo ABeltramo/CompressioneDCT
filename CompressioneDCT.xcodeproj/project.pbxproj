@@ -59,6 +59,7 @@
 		716294121CE6339A009026E7 /* libgobject-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libgobject-2.0.a"; path = "/opt/local/lib/libgobject-2.0.a"; sourceTree = "<absolute>"; };
 		716294141CE633A3009026E7 /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "/opt/local/lib/libglib-2.0.a"; sourceTree = "<absolute>"; };
 		716294161CE633AB009026E7 /* libintl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libintl.a; path = /opt/local/lib/libintl.a; sourceTree = "<absolute>"; };
+		71649E0C1CF1F05300544741 /* Compressione.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Compressione.hpp; sourceTree = "<group>"; };
 		7183F06D1CE5C7BA003B026B /* CompressioneDCT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CompressioneDCT; sourceTree = BUILT_PRODUCTS_DIR; };
 		7183F0701CE5C7BA003B026B /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		719C20521CEB684C008CF0C3 /* bitmap_plus.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = bitmap_plus.hpp; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 				7183F0701CE5C7BA003B026B /* main.cpp */,
 				7117113E1CEF3547009F9367 /* GUI.hpp */,
 				71DCBB791CECABC700C41ECE /* DCT.hpp */,
+				71649E0C1CF1F05300544741 /* Compressione.hpp */,
 			);
 			name = Main;
 			path = CompressioneDCT;

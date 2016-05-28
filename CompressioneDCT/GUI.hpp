@@ -49,7 +49,6 @@ void btnStartFunc(GtkWidget *widget, gpointer data){
 		gtk_widget_destroy (dialog);
 		return;
 	}
-	cout << "Q: " << quality << " N: " << N << " File:" << file <<  endl;
 	startCompute(N,quality,file);
 	ScaleImg = 1;
 	setImages();

@@ -2,8 +2,7 @@
 //  bitmap_plus.hpp
 //  CompressioneDCT
 //
-//  Created by Ale on 17/05/16.
-//  Copyright © 2016 ABeltramo. All rights reserved.
+//  Created on 17/05/16.
 //
 
 #ifndef bitmap_plus_h

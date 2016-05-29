@@ -2,8 +2,7 @@
 //  GUI.hpp
 //  CompressioneDCT
 //
-//  Created by Ale on 19/05/16.
-//  Copyright © 2016 ABeltramo. All rights reserved.
+//  Created on 19/05/16.
 //
 
 #ifndef GUI_h
@@ -29,6 +28,10 @@ void setImages(double scale=1){
 	gtk_image_set_from_pixbuf(Img2,pixImg2);
 }
 
+// Quando si preme il bottone di start bisogna:
+// 1- Recuperare i valori impostati
+// 2- Aprire il file scelto
+// 3- Avviare la computazione
 void btnStartFunc(GtkWidget *widget, gpointer data){
 	GtkAdjustment * scaleQuality = (GtkAdjustment *)gtk_builder_get_object (builder, "adjustment1");
 	int quality = gtk_adjustment_get_value(scaleQuality);
@@ -54,40 +57,35 @@ void btnStartFunc(GtkWidget *widget, gpointer data){
 	setImages();
 }
 
-void btnAumentaFunc(){
+void btnAumentaFunc(){	// Aumenta lo zoom delle immagini
 	ScaleImg += 0.25;
 	setImages(ScaleImg);
 }
 
-void btnRiduciFunc(){
+void btnRiduciFunc(){	// Riduci lo zoom delle immagini
 	ScaleImg -= 0.25;
 	setImages(ScaleImg);
 }
 
 int start (int   argc, char *argv[]){
-	/* This is called in all GTK applications. Arguments are parsed
-	 * from the command line and are returned to the application.
-	 */
 	gtk_init (&argc, &argv);
 	
 	builder = gtk_builder_new();
-	gtk_builder_add_from_file (builder, "res/GUI.glade", NULL);
+	gtk_builder_add_from_file (builder, "res/GUI.glade", NULL);					// Recupero l'impostazione grafica dal file
 	
-	window = (GtkWindow*) gtk_builder_get_object (builder, "MainWindow");
+	window = (GtkWindow*) gtk_builder_get_object (builder, "MainWindow");		// Istanzio l'oggetto window
+	g_signal_connect (window, "destroy",G_CALLBACK(gtk_main_quit), NULL);		// Associo alla chiusura della finestra il termine del programma
 	
 	GtkButton * btnStart = (GtkButton *)gtk_builder_get_object (builder, "BtnApplica");
-	g_signal_connect (btnStart, "clicked", G_CALLBACK (btnStartFunc), NULL);
+	g_signal_connect (btnStart, "clicked", G_CALLBACK (btnStartFunc), NULL);	// Associo al bottone la funzione btnStartFunc
 	
 	GtkButton * btnAumenta = (GtkButton *)gtk_builder_get_object (builder, "BtnAumenta");
-	g_signal_connect (btnAumenta, "clicked", G_CALLBACK (btnAumentaFunc), NULL);
+	g_signal_connect (btnAumenta, "clicked", G_CALLBACK (btnAumentaFunc), NULL);// Associo al bottone la funzione btnAumentaFunc
 	
 	GtkButton * BtnRiduci = (GtkButton *)gtk_builder_get_object (builder, "BtnRiduci");
-	g_signal_connect (BtnRiduci, "clicked", G_CALLBACK (btnRiduciFunc), NULL);
+	g_signal_connect (BtnRiduci, "clicked", G_CALLBACK (btnRiduciFunc), NULL);	// Associo al bottone la funzione btnRiduciFunc
 	
-	/* Connect destroy event to the window. */
-	g_signal_connect (window, "destroy",G_CALLBACK(gtk_main_quit), NULL);
-	
-	gtk_main ();
+	gtk_main ();																// Avvia il processo grafico
 	
 	return 0;
 }

@@ -2,8 +2,7 @@
 //  Compressione.hpp
 //  CompressioneDCT
 //
-//  Created by Ale on 22/05/16.
-//  Copyright © 2016 ABeltramo. All rights reserved.
+//  Created on 22/05/16.
 //
 
 #ifndef Compressione_h

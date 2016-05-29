@@ -2,8 +2,7 @@
 //  DCT.hpp
 //  CompressioneDCT
 //
-//  Created by Ale on 18/05/16.
-//  Copyright © 2016 ABeltramo. All rights reserved.
+//  Created on 18/05/16.
 //
 
 #ifndef DCT_h
@@ -48,31 +47,28 @@ void denormalizza(int m, int n, double * array){
 
 // DCT2
 double * dct2(int height, int width, double* yChannel){
-	double * out = (double *) malloc(sizeof(double) * height * width); // Alloco il vettore di output
+	double * out = (double *) malloc(sizeof(double) * height * width);	// Alloco il vettore di output
 	
-	// do the fftw3 magic
-	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,		// Parametri necessari per l'esecuzione
 									  FFTW_REDFT10, FFTW_REDFT10, FFTW_ESTIMATE); // FFTW_REDFT10
-	fftw_execute(plan);
+	fftw_execute(plan);													// Esecuzione del calcolo
 	
-	normalizza(height, width, out); // normalizzazione
+	normalizza(height, width, out);										// normalizzazione
 	return out;
 }
 
 // DCT2 inversa
 double * idct2(int height, int width, double * yChannel){
-	double * out = (double *) malloc(sizeof(double) * height * width); // Alloco il vettore di output
+	double * out = (double *) malloc(sizeof(double) * height * width);	// Alloco il vettore di output
 	
 	// denormalizzazione
 	denormalizza(height, width, yChannel);
 	
-	// do the fftw3 magic
-	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,
+	fftw_plan plan = fftw_plan_r2r_2d(height, width, yChannel, out,		// Parametri necessari per l'esecuzione
 									  FFTW_REDFT01, FFTW_REDFT01, FFTW_ESTIMATE); // FFTW_REDFT01 (01 per l'inversa)
-	fftw_execute(plan);
+	fftw_execute(plan);													// Esecuzione del calcolo
 	
-	// Scala i risultati di una costante
-	double scale = 4.0 * height * width;
+	double scale = 4.0 * height * width;								// Scala i risultati di una costante
 	for(int i = 0; i < height; i++)
 		for(int j = 0; j < width; j++)
 			out[i*width + j] /= scale;

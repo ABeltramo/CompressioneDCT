@@ -7,5 +7,9 @@ all: main
 main: 
 	g++ -c $(SRC_DIR)/main.cpp -o main.o $(CC_FLAGS)
 
+install-dep:
+	apt-get update
+	apt-get install -y g++ libgtk-3-dev libfftw3-3 libfftw3-dev
+
 clean:
 	@rm -rf *.o

@@ -12,7 +12,7 @@
 #include "Compressione.hpp"
 
 GtkWindow *window;
-GtkBuilder * builder;
+GtkBuilder *builder;
 
 double ScaleImg = 1;
 void setImages(double scale=1){

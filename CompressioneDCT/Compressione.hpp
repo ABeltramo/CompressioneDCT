@@ -84,11 +84,14 @@ double* getSingleBlock(bitmap_plus & img,unsigned int x,unsigned int y){
 vector<blocco*> DCT2Apply(bitmap_plus & img){
 	if(debug) cout << endl << "DCT2Apply()" << endl;
 	vector<blocco*> v_blocchi;
-	for(int j=0; j<img.height(); j+=blockSize){							 // Per ogni blocco riga (j+=blocksize)
-		for(int i=0;i<img.width();i+=blockSize){						 // Per ogni blocco colonna (i+=blocksize)
-			blocco *b = new blocco;										 // Creo un blocco
-			b->data = dct2(blockSize,blockSize,getSingleBlock(img,i,j)); // Calcolo da DCT
-			v_blocchi.push_back(b);										 // Salvo il blocco nel vettore
+	for(int j=0; j<img.height(); j+=blockSize){							// Per ogni blocco riga (j+=blocksize)
+		for(int i=0;i<img.width();i+=blockSize){						// Per ogni blocco colonna (i+=blocksize)
+			blocco *b = new blocco;										// Creo un blocco
+			b->data = getSingleBlock(img,i,j);
+			for(int i=0;i<blockSize*blockSize;i++)						// Scalo di 128
+				b->data[i] -= 128;
+			b->data = dct2(blockSize,blockSize,b->data);				// Calcolo da DCT
+			v_blocchi.push_back(b);										// Salvo il blocco nel vettore
 		}
 	}
 	return v_blocchi;
@@ -110,16 +113,16 @@ static const unsigned int Q[] = {			// Matrice di quantizzazione
 };
 
 void quantizza(vector<blocco*> immagine){
-	if(debug) cout << endl << "quantizza()" << endl;
+	if(debug) cout << endl << "Q * qf = " << endl;
 	double qf;
 	if(quality >= 50)
 		qf = (double)(200-(2*quality))/100;
 	else
 		qf = (double)(5000/quality)/100;
-	long int Q1[64];									// Q1 contiene la matrice Q approssimata con la qualità scelta
+	long int Q1[64];							// Q1 contiene la matrice Q approssimata con la qualità scelta
 	for(int i=0;i<64;i++){
 		int ris = round(qf*Q[i]);
-		if(ris == 0)	// per evitare divisioni per 0
+		if(ris == 0)							// per evitare divisioni per 0
 			ris = 1;
 		Q1[i] = ris;							// round(qf*Q)
 	}
@@ -130,7 +133,7 @@ void quantizza(vector<blocco*> immagine){
 				cout << endl;
 			cout << Q1[i] << " ";
 		}
-		cout << endl;
+		cout << endl << endl << "Quantizzazione:" << endl;
 	}
 	
 	long int QN[blockSize][blockSize];
@@ -164,8 +167,11 @@ void quantizza(vector<blocco*> immagine){
 
 void IDCT2Apply(vector<blocco*> v_blocchi){
 	if(debug) cout << endl << "IDCT2Apply()" << endl;
-	for(int i=0;i<v_blocchi.size();i++)
+	for(int i=0;i<v_blocchi.size();i++){
 		v_blocchi[i]->data = idct2(blockSize,blockSize,v_blocchi[i]->data);		// Calcolo la DCT inversa
+		for(int j=0;j<blockSize*blockSize;j++)									// Scalo di 128
+			v_blocchi[i]->data[j] += 128;
+	}
 }
 
 /******************************************************

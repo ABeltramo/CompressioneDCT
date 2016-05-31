@@ -87,10 +87,7 @@ vector<blocco*> DCT2Apply(bitmap_plus & img){
 	for(int j=0; j<img.height(); j+=blockSize){							// Per ogni blocco riga (j+=blocksize)
 		for(int i=0;i<img.width();i+=blockSize){						// Per ogni blocco colonna (i+=blocksize)
 			blocco *b = new blocco;										// Creo un blocco
-			b->data = getSingleBlock(img,i,j);
-			for(int i=0;i<blockSize*blockSize;i++)						// Scalo di 128
-				b->data[i] -= 128;
-			b->data = dct2(blockSize,blockSize,b->data);				// Calcolo da DCT
+			b->data = dct2(blockSize,blockSize,getSingleBlock(img,i,j));// Calcolo da DCT
 			v_blocchi.push_back(b);										// Salvo il blocco nel vettore
 		}
 	}
@@ -167,11 +164,8 @@ void quantizza(vector<blocco*> immagine){
 
 void IDCT2Apply(vector<blocco*> v_blocchi){
 	if(debug) cout << endl << "IDCT2Apply()" << endl;
-	for(int i=0;i<v_blocchi.size();i++){
+	for(int i=0;i<v_blocchi.size();i++)
 		v_blocchi[i]->data = idct2(blockSize,blockSize,v_blocchi[i]->data);		// Calcolo la DCT inversa
-		for(int j=0;j<blockSize*blockSize;j++)									// Scalo di 128
-			v_blocchi[i]->data[j] += 128;
-	}
 }
 
 /******************************************************

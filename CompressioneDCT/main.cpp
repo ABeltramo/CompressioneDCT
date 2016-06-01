@@ -9,4 +9,5 @@
 
 int main(int argc, char *argv[]){
 	return start(argc,argv);	// Avvia l'interfaccia grafica
+    //testDCT2();
 }

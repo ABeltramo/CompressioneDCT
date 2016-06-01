@@ -46,8 +46,8 @@ void debugPrint(double * array){
  ******************************************************/
 void scaleImage(bitmap_plus & img){
 	if(debug) cout << endl << "scaleImage()" << endl;
-	const unsigned int height = img.height();
-	const unsigned int width  = img.width();
+	unsigned int height = img.height();
+	unsigned int width  = img.width();
 	
 	// L'ordine di queste due operazioni conta!
 	// Non spostare!
@@ -59,6 +59,7 @@ void scaleImage(bitmap_plus & img){
 		for(int i=0;i<height;i++)
 			for(int j=width;j<newWidth;j++)
 				img.set_pixel(j,i,width-1,i);
+        width = newWidth;
 	}
 	if(height % blockSize != 0){ // Completamento righe
 		if(debug) cout << "Altezza: " << height << " aggiungo " << (blockSize - (height % blockSize)) << "px righe" << endl;

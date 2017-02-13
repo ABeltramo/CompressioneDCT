@@ -1,4 +1,4 @@
-# Compressione DCT  [![Build Status](https://travis-ci.org/ABeltramo/CompressioneDCT.svg?branch=master)](https://travis-ci.org/ABeltramo/CompressioneDCT)
+# Compressione DCT  [![Build Status](https://travis-ci.org/ABeltramo/CompressioneDCT.svg?branch=master)](https://travis-ci.org/ABeltramo/CompressioneDCT) [![License: MIT](https://img.shields.io/badge/License-MIT-lightgrey.svg)](https://opensource.org/licenses/MIT)
 
 Implementazione in C++ della compressione JPEG tramite la DCT2
 Il progetto è stato compilato su Debian 8 (jessie)
